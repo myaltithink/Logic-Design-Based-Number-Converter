@@ -7,7 +7,19 @@ base2ToBase8(String given) {
     return;
   }
 
-  List<String> sortedData = sliceBase2Binary(given, 3);
+  List<String> slicedData = sliceBase2Binary(given, 3);
+  String computedValue = "";
+  
+  for (String item in slicedData) {
+    int value = 0;
+    for (int i = item.length-1; i >= 0; i--) {
+      if(item[i] == '1') value += base8Switches[i];
+    }
+    computedValue += value.toString();
+  }
+
+  print("Base 2 -> Base 8: $given ---> $computedValue");
+
 }
 
 List<String> sliceBase2Binary(String given, int interval) {
@@ -16,7 +28,14 @@ List<String> sliceBase2Binary(String given, int interval) {
   for (int i = given.length; i > 0; i -= interval) {
     int start = i - interval;
     if (start < 0) {
-      sortedBinary.add(given.substring(0, i));
+      String lastValue = given.substring(0, i);
+      String finalValue = '';
+      for (var i = 0; i < 3-lastValue.length; i++) {
+        finalValue += "0";
+      }
+      finalValue += lastValue;
+
+      sortedBinary.add(finalValue);
       break;
     }
     sortedBinary.add(given.substring(start, i));

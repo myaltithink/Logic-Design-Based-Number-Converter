@@ -53,8 +53,7 @@ void main(List<String> arguments) {
         throw Error();
       }
 
-      print(
-          "\nYou have chosen ${conversions.keys.elementAt(chosenMethod)} Conversion");
+      print("\nYou have chosen ${conversions.keys.elementAt(chosenMethod)} Conversion");
       stdout.write("Please enter the data you wish to convert: ");
       String? given = stdin.readLineSync();
 
@@ -62,6 +61,7 @@ void main(List<String> arguments) {
       conversions.values.elementAt(chosenMethod)(given);
     } catch (e) {
       print("Sorry but it seems like you have entered an invalid input");
+      print("Error: ${e.toString()}");
     }
   }
 }
